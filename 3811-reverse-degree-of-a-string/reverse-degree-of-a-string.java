@@ -8,8 +8,8 @@ class Solution {
              k=a*(i+1);
              sum+=k;
              
-             System.out.println(a);
-            System.out.println(k);
+            //  System.out.println(a);
+            // System.out.println(k);
              
         }      
         
