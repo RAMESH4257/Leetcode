@@ -10,34 +10,50 @@
  */
 class Solution {
     public ListNode removeNthFromEnd(ListNode head, int n) {
-        if(n==1 && head.next==null){
-            return null;
-        }
-       int size=1;
-        ListNode temp=head;
-        while(temp.next!=null){
-            size++;
-            temp=temp.next;
-        }
-        temp=head;
-        int si=size-n+1;
-        int curpos=1;
-        ListNode prevnode=null;
-        while(temp!=null){
-            if(curpos==si){
-                break;
-            }
-            prevnode=temp;
-            temp=temp.next;
-            curpos++;
-        }
-        //prevnode.next=temp.next;
-        if(head==temp){
-            head=head.next;
-            return head;
-        }
-        prevnode.next=temp.next;
+    //     if(n==1 && head.next==null){
+    //         return null;
+    //     }
+    //    int size=1;
+    //     ListNode temp=head;
+    //     while(temp.next!=null){
+    //         size++;
+    //         temp=temp.next;
+    //     }
+    //     temp=head;
+    //     int si=size-n+1;
+    //     int curpos=1;
+    //     ListNode prevnode=null;
+    //     while(temp!=null){
+    //         if(curpos==si){
+    //             break;
+    //         }
+    //         prevnode=temp;
+    //         temp=temp.next;
+    //         curpos++;
+    //     }
+    //     //prevnode.next=temp.next;
+    //     if(head==temp){
+    //         head=head.next;
+    //         return head;
+    //     }
+    //     prevnode.next=temp.next;
+    //     return head;
+     //    TWO-POINTERS
+     ListNode slow=head;
+     ListNode fast=head;
+     for(int i=0;i<n;i++){
+        fast=fast.next;
+     }
+     if(fast==null){
+        head=head.next;
         return head;
+     }
+     while(fast.next!=null){
+        slow=slow.next;
+        fast=fast.next;
+     }
+     slow.next=slow.next.next;
+     return head;
         
     }
 }
