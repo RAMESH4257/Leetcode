@@ -1,5 +1,12 @@
 class Solution {
     public int singleNumber(int[] nums) {
+
+        int ones=0,twos=0;
+        for(int i:nums){
+            ones=(ones^i)&(~twos);
+            twos=(twos^i)&(~ones);
+        }
+        return ones;
         // use hashmap -brute force;
 
         // int ans=0;
@@ -14,12 +21,13 @@ class Solution {
         //         ans=ans|(1<<bit);
         //     }
         // }
-        // return ans; 
-        Arrays.sort(nums);
-        for(int i=1;i<nums.length;i=i+3){
-            if(nums[i]!=nums[i-1]) return nums[i-1];
-        }
-        return nums[nums.length-1];
+        // return ans;
+
+        // Arrays.sort(nums);
+        // for(int i=1;i<nums.length;i=i+3){
+        //     if(nums[i]!=nums[i-1]) return nums[i-1];
+        // }
+        // return nums[nums.length-1];
     }
 }
 
