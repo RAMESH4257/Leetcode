@@ -15,10 +15,27 @@
  */
 class Solution {
     public int maxDepth(TreeNode root) {
+        // if(root==null) return 0;
+        // int lh=maxDepth(root.left);
+        // int rh=maxDepth(root.right);
+        // return 1+Math.max(lh,rh);  
+        
+        // level-order
         if(root==null) return 0;
-        int lh=maxDepth(root.left);
-        int rh=maxDepth(root.right);
-        return 1+Math.max(lh,rh);
+        Queue<TreeNode> qu=new LinkedList<>();
+        int max=0;
+        qu.add(root);
+        int c=0;
+        while(!qu.isEmpty()){
+            int lev=qu.size();
+            c++;
+            for(int i=0;i<lev;i++){
+                TreeNode n=qu.remove();
+                if(n.left!=null) qu.add(n.left);
+                if(n.right!=null) qu.add(n.right);
+            }
+        }
+        return c;
     }
 }
 
